@@ -46,12 +46,19 @@ const songListArray = [
 ];
 
 app.use(express.static('server/public'));
+app.use(express.json());
 
 app.get('/artist', (req, res) => {
     res.send(artistListArray);
 });
 
 // TODO - Add GET for songs
+
+app.get('/songs', (req, res) => {
+    console.log('Song request made');
+    res.send(songListArray);
+});
+
 
 app.listen(PORT, () => {
     console.log('listening on port', PORT)

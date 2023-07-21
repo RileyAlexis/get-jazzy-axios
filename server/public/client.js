@@ -25,3 +25,23 @@ function getArtists() {
 }
 // TODO Add ajax request for /songs and display on DOM
 getArtists();
+
+function getSongs() {
+    axios.get('/songs').then((response) => {
+        console.log(response);
+        let songsFromServer = response.data;
+        for (let songs of songsFromServer) {
+            songTableBody.innerHTML += `
+            <tr>
+                <td>${songs.title}</td>
+                <td>${songs.artist}</td>
+            </tr>
+            `;
+        }
+    }).catch((error) => {
+        console.log(error);
+        alert('something went wrong');
+    });
+}
+
+getSongs();
