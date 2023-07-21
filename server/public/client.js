@@ -9,6 +9,7 @@ function getArtists() {
         // quotesFromServer will be an Array of quotes
         let quotesFromServer = response.data;
         let contentDiv = document.querySelector('#artistTableBody');
+        contentDiv.innerHTML = '';
         for(let artist of quotesFromServer) {
             contentDiv.innerHTML += `
                 <tr>
@@ -45,3 +46,25 @@ function getSongs() {
 }
 
 getSongs();
+
+function addNewArtist(event) {
+    event.preventDefault();
+
+    let newArtist = {
+        name: newArtistName.value,
+        born: newArtistBorn.value,
+        died: newArtistDied.value,
+    }
+
+    axios.post('/newArtist', newArtist).then((response) => {
+        console.log(response);
+        getArtists();
+    }).catch((error) => {
+        console.log(error);
+        alert('Something went wrong');
+    });
+}
+
+newArtistName.value = 'Ani Difranco';
+newArtistBorn.value = 1973;
+newArtistDied.value = 'Never';
