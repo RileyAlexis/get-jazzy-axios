@@ -38,6 +38,12 @@
         Died: <input type="text" id="newArtistDied" />
         <input type="submit" value="Add New Artist">
     </form>
+    <br><br>
+    <form onsubmit="addNewSong(event)" id="newSongForm">
+        Title: <input type="text" id="newSongTitle" />
+        Artist: <input type="text" id="newSongArtist" />
+        <input type="submit" value="Add New Song" />
+    </form>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="client.js"></script>
 </body>

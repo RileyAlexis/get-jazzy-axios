@@ -66,6 +66,13 @@ app.post('/newArtist', (req, res) => {
     res.sendStatus(201);
 })
 
+app.post('/newSong', (req, res) => {
+    console.log('New Song Post made');
+    let newSong = req.body;
+    songListArray.push(newSong);
+    res.sendStatus(201);
+})
+
 
 app.listen(PORT, () => {
     console.log('listening on port', PORT)

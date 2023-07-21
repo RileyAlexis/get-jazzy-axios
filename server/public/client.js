@@ -31,6 +31,7 @@ function getSongs() {
     axios.get('/songs').then((response) => {
         console.log(response);
         let songsFromServer = response.data;
+        songTableBody.innerHTML = '';
         for (let songs of songsFromServer) {
             songTableBody.innerHTML += `
             <tr>
@@ -65,6 +66,30 @@ function addNewArtist(event) {
     });
 }
 
+function addNewSong(event) {
+    event.preventDefault();
+
+    let newSong = {
+        title: newSongTitle.value,
+        artist: newSongArtist.value,
+    }
+
+    axios.post('/newSong', newSong).then((response) => {
+        console.log(response);
+        getSongs();
+    }).catch((error) => {
+        console.log(error);
+        alert('Something went wrong');
+    });
+}
+
+
+
+
+
+
 newArtistName.value = 'Ani Difranco';
 newArtistBorn.value = 1973;
 newArtistDied.value = 'Never';
+newSongTitle.value = 'Little Plastic Castles';
+newSongArtist.value = 'Ani Difranco';
